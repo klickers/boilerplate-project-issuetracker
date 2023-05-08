@@ -10,6 +10,16 @@ const apiRoutes = require("./routes/api.js");
 const fccTestingRoutes = require("./routes/fcctesting.js");
 const runner = require("./test-runner");
 
+const sequelize = require("./helpers/db.js");
+sequelize.sequelize
+    .sync()
+    .then(() => {
+        console.log("Synced db.");
+    })
+    .catch((err) => {
+        console.log("Failed to sync db: " + err.message);
+    });
+
 let app = express();
 
 app.use("/public", express.static(process.cwd() + "/public"));
