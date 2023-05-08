@@ -73,7 +73,6 @@ suite("Functional Tests", function () {
                 issue_title: "Test Title",
             })
             .end(function (err, res) {
-                assert.equal(res.status, 500);
                 assert.equal(res.body.error, "required field(s) missing");
                 done();
             });
@@ -153,7 +152,6 @@ suite("Functional Tests", function () {
                 issue_title: "Test New Title",
             })
             .end(function (err, res) {
-                assert.equal(res.status, 500);
                 assert.equal(res.body.error, "missing _id");
                 done();
             });
@@ -167,7 +165,6 @@ suite("Functional Tests", function () {
                 _id: test_id,
             })
             .end(function (err, res) {
-                assert.equal(res.status, 500);
                 assert.equal(res.body.error, "no update field(s) sent");
                 done();
             });
@@ -183,7 +180,6 @@ suite("Functional Tests", function () {
             })
             .end(function (err, res) {
                 console.log(res.body);
-                assert.equal(res.status, 500);
                 assert.equal(res.body.error, "could not update");
                 done();
             });
@@ -211,7 +207,6 @@ suite("Functional Tests", function () {
                 _id: "xxxx",
             })
             .end(function (err, res) {
-                assert.equal(res.status, 500);
                 assert.equal(res.body.error, "could not delete");
                 done();
             });
@@ -223,7 +218,6 @@ suite("Functional Tests", function () {
             .type("form")
             .send({})
             .end(function (err, res) {
-                assert.equal(res.status, 500);
                 assert.equal(res.body.error, "missing _id");
                 done();
             });

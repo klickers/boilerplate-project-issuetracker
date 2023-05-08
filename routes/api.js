@@ -17,7 +17,7 @@ module.exports = function (app) {
                 });
                 res.status(200).json(issues);
             } catch (e) {
-                res.status(500).json({ error: e });
+                res.json({ error: e });
             }
         })
 
@@ -32,7 +32,7 @@ module.exports = function (app) {
             } = req.body;
 
             if (!issue_title || !issue_text || !created_by) {
-                res.status(500).json({ error: "required field(s) missing" });
+                res.json({ error: "required field(s) missing" });
                 return;
             }
 
@@ -47,18 +47,18 @@ module.exports = function (app) {
                 });
                 res.status(200).json(issue);
             } catch (e) {
-                res.status(500).json({ error: e });
+                res.json({ error: e });
             }
         })
 
         .put(async function (req, res) {
             const { _id } = req.body;
             if (!_id) {
-                res.status(500).json({ error: "missing _id" });
+                res.json({ error: "missing _id" });
                 return;
             }
             if (Object.keys(req.body).length === 1) {
-                res.status(500).json({ error: "no update field(s) sent", _id });
+                res.json({ error: "no update field(s) sent", _id });
                 return;
             }
 
@@ -74,14 +74,14 @@ module.exports = function (app) {
                 if (!issue[0]) throw new Error();
                 res.status(200).json({ result: "successfully updated", _id });
             } catch (e) {
-                res.status(500).json({ error: "could not update", _id });
+                res.json({ error: "could not update", _id });
             }
         })
 
         .delete(async function (req, res) {
             const { _id } = req.body;
             if (!_id) {
-                res.status(500).json({ error: "missing _id" });
+                res.json({ error: "missing _id" });
                 return;
             }
 
@@ -94,7 +94,7 @@ module.exports = function (app) {
                 if (!issue) throw new Error();
                 res.status(200).json({ result: "successfully deleted", _id });
             } catch {
-                res.status(500).json({ error: "could not delete", _id });
+                res.json({ error: "could not delete", _id });
             }
         });
 };
